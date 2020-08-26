@@ -55,7 +55,7 @@ static uint64_t xdebug_get_nanotime_abs(xdebug_nanotime_context *nanotime_contex
 #endif
 
 #if HAVE_GETTIMEOFDAY | PHP_WIN32
-	// 
+	//
 	{
 		return 0;
 	}
@@ -109,12 +109,6 @@ static uint64_t xdebug_get_nanotime_rel(xdebug_nanotime_context *nanotime_contex
 #elif CLOCK_MONOTONIC
 static uint64_t xdebug_get_nanotime_rel(xdebug_nanotime_context *nanotime_context)
 {
-	struct timespec ts;
-
-	if (clock_gettime(CLOCK_MONOTONIC, &ts) == 0) {
-		return (uint64_t)ts.tv_sec * NANOS_IN_SEC + (uint64_t)ts.tv_nsec;
-	}
-
 	return 0;
 }
 #endif
