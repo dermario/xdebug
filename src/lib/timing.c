@@ -55,15 +55,9 @@ static uint64_t xdebug_get_nanotime_abs(xdebug_nanotime_context *nanotime_contex
 #endif
 
 #if HAVE_GETTIMEOFDAY | PHP_WIN32
-	// Fallback to gettimeofday() if better platform specific time is not
-	// available. gettimeofday() is always available in PHP on Windows, as it's
-	// expose through 'win32/time.[ch]'
+	// 
 	{
-		struct timeval tp;
-
-		if (gettimeofday(&tp, NULL) == 0) {
-			return (uint64_t)tp.tv_sec * NANOS_IN_SEC + (uint64_t)tp.tv_usec * NANOS_IN_MICROSEC;
-		}
+		return 0;
 	}
 #endif
 
